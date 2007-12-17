@@ -15,7 +15,6 @@ License:	GPL
 URL:		http://www.magoa.net/linux/
 Source:		vdr-%plugin-%cvsrev.tar.bz2
 Patch1:		vdr-text2skin-notext.diff
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.4.1-6
 BuildRequires:	freetype2-devel libMagick-devel
 Requires:	vdr-abi = %vdr_abi
