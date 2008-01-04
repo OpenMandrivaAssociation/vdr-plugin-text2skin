@@ -3,7 +3,7 @@
 %define name	vdr-plugin-%plugin
 %define version	1.1
 %define cvsrev	20060904
-%define rel	5
+%define rel	6
 %define release	%mkrel 0.%cvsrev.%rel
 
 Summary:	VDR plugin: Loader for text-based skins
