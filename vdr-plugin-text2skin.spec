@@ -13,10 +13,13 @@ Release:	%release
 Group:		Video
 License:	GPL
 URL:		http://www.magoa.net/linux/
+# http://text2skin.vdr-developer.org/
 Source:		vdr-%plugin-%cvsrev.tar.bz2
 Patch1:		vdr-text2skin-notext.diff
+Patch2:		94_text2skin-1.1-cvs_ext-0.10-vdr-1.5.4.dpatch
+Patch3:		95_text2skin-1.1-cvs-locale.dpatch
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-BuildRequires:	vdr-devel >= 1.4.1-6
+BuildRequires:	vdr-devel >= 1.6.0
 BuildRequires:	freetype2-devel libMagick-devel
 Requires:	vdr-abi = %vdr_abi
 
@@ -30,10 +33,16 @@ as the author of the skin wishes.
 
 %prep
 %setup -q -n %plugin
-find -type d -name 'CVS' | xargs rm -rf
+find -type d -name 'CVS' -print0 | xargs -0 rm -rf
 %patch1 -p1 -b .ft22
+%patch2 -p1
+%patch3 -p1
+# (04/2008) Fixes build
+sed -i 's,-lMagick ,,' Makefile
+%vdr_plugin_prep
 
 %build
+VDR_PLUGIN_FLAGS="%vdr_plugin_flags $(pkg-config --cflags Magick++)"
 %vdr_plugin_build
 
 %install
