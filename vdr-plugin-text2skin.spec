@@ -42,7 +42,7 @@ sed -i 's,-lMagick ,,' Makefile
 %vdr_plugin_prep
 
 %build
-VDR_PLUGIN_FLAGS="%vdr_plugin_flags $(pkg-config --cflags Magick++)"
+VDR_PLUGIN_FLAGS="%vdr_plugin_flags $(pkg-config --cflags ImageMagick++)"
 %vdr_plugin_build
 
 %install
