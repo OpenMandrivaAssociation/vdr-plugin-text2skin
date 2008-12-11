@@ -20,7 +20,7 @@ Patch2:		94_text2skin-1.1-cvs_ext-0.10-vdr-1.5.4.dpatch
 Patch3:		95_text2skin-1.1-cvs-locale.dpatch
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.6.0
-BuildRequires:	freetype2-devel libMagick-devel
+BuildRequires:	freetype2-devel imagemagick-devel
 Requires:	vdr-abi = %vdr_abi
 
 %description
