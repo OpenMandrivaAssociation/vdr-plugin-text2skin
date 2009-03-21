@@ -18,6 +18,7 @@ Source:		vdr-%plugin-%cvsrev.tar.bz2
 Patch1:		vdr-text2skin-notext.diff
 Patch2:		94_text2skin-1.1-cvs_ext-0.10-vdr-1.5.4.dpatch
 Patch3:		95_text2skin-1.1-cvs-locale.dpatch
+Patch4:		text2skin-types.patch
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.6.0
 BuildRequires:	freetype2-devel imagemagick-devel
@@ -37,6 +38,7 @@ find -type d -name 'CVS' -print0 | xargs -0 rm -rf
 %patch1 -p1 -b .ft22
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 # (04/2008) Fixes build
 sed -i 's,-lMagick ,,' Makefile
 %vdr_plugin_prep
