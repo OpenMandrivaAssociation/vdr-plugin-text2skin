@@ -20,7 +20,7 @@ Patch2:		94_text2skin-1.1-cvs_ext-0.10-vdr-1.5.4.dpatch
 Patch3:		95_text2skin-1.1-cvs-locale.dpatch
 Patch4:		text2skin-types.patch
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-BuildRequires:	vdr-devel >= 1.6.0
+BuildRequires:	vdr-devel >= 1.6.0-7
 BuildRequires:	freetype2-devel imagemagick-devel
 Requires:	vdr-abi = %vdr_abi
 
@@ -44,7 +44,7 @@ sed -i 's,-lMagick ,,' Makefile
 %vdr_plugin_prep
 
 %build
-VDR_PLUGIN_FLAGS="%vdr_plugin_flags $(pkg-config --cflags ImageMagick++)"
+VDR_PLUGIN_EXTRA_FLAGS="$(pkg-config --cflags ImageMagick++)"
 %vdr_plugin_build
 
 %install
