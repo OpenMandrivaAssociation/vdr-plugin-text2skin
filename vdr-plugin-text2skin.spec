@@ -1,24 +1,28 @@
 
 %define plugin	text2skin
 %define name	vdr-plugin-%plugin
-%define version	1.1
-%define cvsrev	20060904
-%define rel	12
-%define release	%mkrel 0.%cvsrev.%rel
+%define version	1.3.1
+%define snap	0
+%define rel	1
+
+%if %snap
+%define release	%mkrel 0.%snap.%rel
+%else
+%define release	%mkrel %rel
+%endif
 
 Summary:	VDR plugin: Loader for text-based skins
 Name:		%name
 Version:	%version
 Release:	%release
 Group:		Video
-License:	GPL
-URL:		http://www.magoa.net/linux/
-# http://text2skin.vdr-developer.org/
-Source:		vdr-%plugin-%cvsrev.tar.bz2
-Patch1:		vdr-text2skin-notext.diff
-Patch2:		94_text2skin-1.1-cvs_ext-0.10-vdr-1.5.4.dpatch
-Patch3:		95_text2skin-1.1-cvs-locale.dpatch
-Patch4:		text2skin-types.patch
+License:	GPL+
+URL:		http://projects.vdr-developer.org/projects/list_files/plg-text2skin
+%if %snap
+Source:		vdr-%plugin-%snap.tar.bz2
+%else
+Source:		vdr-%plugin-%version.tgz
+%endif
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.6.0-7
 BuildRequires:	freetype2-devel imagemagick-devel
@@ -33,18 +37,10 @@ skins may be themeable (you can create your own color-theme) and translateable
 as the author of the skin wishes.
 
 %prep
-%setup -q -n %plugin
-find -type d -name 'CVS' -print0 | xargs -0 rm -rf
-%patch1 -p1 -b .ft22
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-# (04/2008) Fixes build
-sed -i 's,-lMagick ,,' Makefile
+%setup -q -n %plugin-%version
 %vdr_plugin_prep
 
 %build
-VDR_PLUGIN_EXTRA_FLAGS="$(pkg-config --cflags ImageMagick++)"
 %vdr_plugin_build
 
 %install
@@ -54,7 +50,7 @@ rm -rf %{buildroot}
 
 install -d -m755 %{buildroot}%{_vdr_plugin_datadir}/%{plugin}
 install -d -m755 %{buildroot}%{_vdr_plugin_cfgdir}
-ln -s %{_vdr_plugin_datadir}/%{plugin} 	%{buildroot}%{_vdr_plugin_cfgdir}/%{plugin}
+ln -s %{_vdr_plugin_datadir}/%{plugin} %{buildroot}%{_vdr_plugin_cfgdir}/%{plugin}
 
 %clean
 rm -rf %{buildroot}
