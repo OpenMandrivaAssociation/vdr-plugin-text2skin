@@ -23,6 +23,7 @@ Source:		vdr-%plugin-%snap.tar.bz2
 %else
 Source:		vdr-%plugin-%version.tgz
 %endif
+Patch0:		text2skin-imagemagick-6.6.2.patch
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	vdr-devel >= 1.6.0-7
 BuildRequires:	freetype2-devel imagemagick-devel
@@ -38,6 +39,7 @@ as the author of the skin wishes.
 
 %prep
 %setup -q -n %plugin-%version
+%apply_patches
 %vdr_plugin_prep
 
 %build
