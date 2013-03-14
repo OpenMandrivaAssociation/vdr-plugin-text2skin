@@ -3,7 +3,7 @@
 %define name	vdr-plugin-%plugin
 %define version	1.3.1
 %define snap	0
-%define rel	2
+%define rel	3
 
 %define debug_package %{nil}
 
@@ -47,22 +47,12 @@ as the author of the skin wishes.
 %vdr_plugin_build
 
 %install
-rm -rf %{buildroot}
 
 %vdr_plugin_install
 
 install -d -m755 %{buildroot}%{vdr_plugin_datadir}/%{plugin}
 install -d -m755 %{buildroot}%{vdr_plugin_cfgdir}
 ln -s %{vdr_plugin_datadir}/%{plugin} %{buildroot}%{vdr_plugin_cfgdir}/%{plugin}
-
-%clean
-rm -rf %{buildroot}
-
-%post
-%vdr_plugin_post %plugin
-
-%postun
-%vdr_plugin_postun %plugin
 
 %files -f %plugin.vdr
 %defattr(-,root,root)
