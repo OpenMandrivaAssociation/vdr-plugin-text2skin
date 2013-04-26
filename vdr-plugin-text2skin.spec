@@ -27,7 +27,7 @@ Source:		vdr-%plugin-%version.tgz
 %endif
 Patch0:		text2skin-imagemagick-6.6.2.patch
 BuildRequires:	vdr-devel >= 1.6.0-7
-BuildRequires:	pkgconfig(freetype2-devel) imagemagick-devel
+BuildRequires:	pkgconfig(freetype2) imagemagick-devel
 Requires:	vdr-abi = %vdr_abi
 
 %description
