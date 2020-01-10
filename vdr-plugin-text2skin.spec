@@ -40,7 +40,7 @@ as the author of the skin wishes.
 
 %prep
 %setup -q -n %plugin-%version
-%apply_patches
+%autopatch -p1
 %vdr_plugin_prep
 
 %build
