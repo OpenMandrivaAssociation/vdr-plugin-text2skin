@@ -19,7 +19,7 @@ Version:	%version
 Release:	%release
 Group:		Video
 License:	GPL+
-URL:		http://projects.vdr-developer.org/projects/list_files/plg-text2skin
+URL:		https://projects.vdr-developer.org/projects/list_files/plg-text2skin
 %if %snap
 Source:		vdr-%plugin-%snap.tar.bz2
 %else
