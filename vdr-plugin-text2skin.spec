@@ -8,9 +8,9 @@
 %define debug_package %{nil}
 
 %if %snap
-%define release	%mkrel 0.%snap.%rel
+%define release 1
 %else
-%define release	%mkrel %rel
+%define release %rel.1
 %endif
 
 Summary:	VDR plugin: Loader for text-based skins
